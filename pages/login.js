@@ -1,10 +1,10 @@
-import Head from 'next/head'
+import Layout from '../components/Layout';
 
-const Login = () => {
+const Login  = () => {
   return (
-    <div>
-    HOLA DESDE LOGIN 
-    </div>
+    <Layout>
+      <h1>Login</h1>
+    </Layout>
   )
 }
 
