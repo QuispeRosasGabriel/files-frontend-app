@@ -10,7 +10,16 @@ const CrearCuenta = () => {
             <div className="flex justify-center mt-5">
                 <div className="w-full max-w-lg">
                     <form className="bg-white rounded shadow-md px-8 pt-6 pb-8 mb-4">
-                        
+                        <div className="mb-4">
+                            <label className="block text-black text-sm font-bold mb-2"
+                                htmlFor="nombre"
+                            >Nombre</label>
+                            <input type="text" className="shadow appearance-none 
+                            rounded w-full py-2 px-3 text-gray-700 leading-light focus:outline-none focus:shadow-outline"
+                            id="nombre"
+                            placeholder="Nombre de usuario"
+                            />
+                        </div>
                     </form>
                 </div>
             </div>
