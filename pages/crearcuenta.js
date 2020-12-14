@@ -64,7 +64,7 @@ const CrearCuenta = () => {
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
                                 />
-                                 {formik.touched.email && formik.errors.email ? (
+                                {formik.touched.email && formik.errors.email ? (
                                     <div className="my-2 bg-gray-200 border-l-4 border-red-500 text-red-700 p-4">
                                         <p className="font-bold">Error</p>
                                         <p>{formik.errors.email}</p>
@@ -84,7 +84,7 @@ const CrearCuenta = () => {
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
                                 />
-                                     {formik.touched.password && formik.errors.password ? (
+                                {formik.touched.password && formik.errors.password ? (
                                     <div className="my-2 bg-gray-200 border-l-4 border-red-500 text-red-700 p-4">
                                         <p className="font-bold">Error</p>
                                         <p>{formik.errors.password}</p>
