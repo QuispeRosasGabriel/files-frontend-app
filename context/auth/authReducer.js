@@ -1,6 +1,12 @@
+import { USUARIO_AUTENTICADO } from "../../types";
+
 export default (state, action) => {
     switch (action.type) {
-        case value:
+        case USUARIO_AUTENTICADO:
+            return {
+                ...state,
+                usuario: action.payload
+            }
             
             break;
     

@@ -2,8 +2,12 @@ import Head from 'next/head'
 import Layout from '../components/Layout';
 import { useFormik } from "formik";
 import * as Yup from 'yup';
+import { useContext } from 'react';
+import authContext from '../context/auth/authContext';
 
 const CrearCuenta = () => {
+
+    const AuthContext = useContext(authContext);
 
     // VALIDANDO CON FORMIK Y YUP
     const formik = useFormik({
