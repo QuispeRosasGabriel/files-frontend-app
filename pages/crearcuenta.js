@@ -7,14 +7,7 @@ import authContext from '../context/auth/authContext';
 const CrearCuenta = () => {
 
     const AuthContext = useContext(authContext);
-    const {usuarioAutenticado, token} = AuthContext;
-
-    useEffect(() => {
-        setTimeout(() => {
-            usuarioAutenticado('Juan');
-        }, 3000);
-    }, [])
-    
+    const {registrarUsuario} = AuthContext;
 
     // VALIDANDO CON FORMIK Y YUP
     const formik = useFormik({
@@ -29,7 +22,7 @@ const CrearCuenta = () => {
             password: Yup.string().required('El password es obligatorio').min(6, 'El password debe contener al menos 6 caracteres')
         }),
         onSubmit: (values) => {
-            console.log('Enviando formulario', values);
+            registrarUsuario(values);
         }
     });
 
@@ -87,7 +80,7 @@ const CrearCuenta = () => {
                                 <label className="block text-black text-sm font-bold mb-2"
                                     htmlFor="password"
                                 >Password</label>
-                                <input type="text" className="shadow appearance-none 
+                                <input type="password" className="shadow appearance-none 
                             rounded w-full py-2 px-3 text-gray-700 leading-light focus:outline-none focus:shadow-outline"
                                     id="password"
                                     placeholder="Ingresa tu contraseña"

@@ -23,6 +23,10 @@ const AuthState = ({children}) => {
         });
     }
 
+    const registrarUsuario = (datos) => {
+        console.log('desde registrar usuario', datos);
+    }
+
     return (
         <authContext.Provider
             value={{
@@ -30,6 +34,7 @@ const AuthState = ({children}) => {
                 autenticado: state.autenticado,
                 usuario: state.usuario,
                 mensaje: state.mensaje,
+                registrarUsuario,
                 usuarioAutenticado
             }}
         >
