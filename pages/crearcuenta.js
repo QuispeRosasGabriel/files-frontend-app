@@ -1,13 +1,20 @@
-import Head from 'next/head'
 import Layout from '../components/Layout';
 import { useFormik } from "formik";
 import * as Yup from 'yup';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import authContext from '../context/auth/authContext';
 
 const CrearCuenta = () => {
 
     const AuthContext = useContext(authContext);
+    const {usuarioAutenticado, token} = AuthContext;
+
+    useEffect(() => {
+        setTimeout(() => {
+            usuarioAutenticado('Juan');
+        }, 3000);
+    }, [])
+    
 
     // VALIDANDO CON FORMIK Y YUP
     const formik = useFormik({
