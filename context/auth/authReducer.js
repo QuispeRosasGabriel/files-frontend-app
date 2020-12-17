@@ -1,4 +1,4 @@
-import { USUARIO_AUTENTICADO } from "../../types";
+import { USUARIO_AUTENTICADO, REGISTRO_EXITOSO } from "../../types";
 
 export default (state, action) => {
     switch (action.type) {
@@ -7,9 +7,12 @@ export default (state, action) => {
                 ...state,
                 usuario: action.payload
             }
-            
-            break;
-    
+        case REGISTRO_EXITOSO:
+            return {
+                ...state,
+                mensaje: action.payload
+            }
+
         default:
             break;
     }
