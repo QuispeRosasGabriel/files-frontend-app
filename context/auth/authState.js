@@ -1,7 +1,12 @@
 import React, { useReducer } from 'react';
 import authContext from "./authContext";
 import authReducer from './authReducer';
-import { USUARIO_AUTENTICADO, REGISTRO_EXITOSO, REGISTRO_ERROR, LIMPIAR_ALERTA, LOGIN_ERROR, LOGIN_EXITOSO } from "../../types/index";
+import { USUARIO_AUTENTICADO,
+         REGISTRO_EXITOSO,
+         REGISTRO_ERROR,
+         LIMPIAR_ALERTA,
+         LOGIN_ERROR, 
+         LOGIN_EXITOSO } from "../../types/index";
 import clienteAxios from '../../config/axios';
 
 const AuthState = ({ children }) => {

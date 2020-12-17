@@ -2,14 +2,22 @@ import Layout from '../components/Layout';
 import { useFormik } from "formik";
 import * as Yup from 'yup';
 import authContext from '../context/auth/authContext';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import Alerta from '../components/Alerta';
+import { useRouter } from 'next/router';
 
  
 const Login = () => {
 
     const AuthContext = useContext(authContext);
-    const { iniciarSesion, mensaje } = AuthContext;
+    const { iniciarSesion, mensaje, autenticado } = AuthContext;
+    const router = useRouter();
+
+    useEffect(() => {
+        if(!!autenticado) {
+            router.push('/');
+        }
+    }, [autenticado])
 
     // VALIDANDO CON FORMIK Y YUP
     const formik = useFormik({
