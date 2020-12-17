@@ -22,12 +22,6 @@ const AuthState = ({ children }) => {
     const [state, dispatch] = useReducer(authReducer, initialState);
 
     // Funciones 
-    const usuarioAutenticado = (nombre) => {
-        dispatch({
-            type: USUARIO_AUTENTICADO,
-            payload: nombre
-        });
-    }
 
     const registrarUsuario = async (datos) => {
         try {
@@ -76,6 +70,10 @@ const AuthState = ({ children }) => {
                 })
             }, 3000);
         }
+    }
+
+    const usuarioAutenticado = async () => {
+        console.log('revisando');
     }
 
     return (
