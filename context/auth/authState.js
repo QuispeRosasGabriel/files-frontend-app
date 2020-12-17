@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import authContext from "./authContext";
 import authReducer from './authReducer';
-import { USUARIO_AUTENTICADO, REGISTRO_EXITOSO, REGISTRO_ERROR, LIMPIAR_ALERTA, LOGIN_ERROR } from "../../types/index";
+import { USUARIO_AUTENTICADO, REGISTRO_EXITOSO, REGISTRO_ERROR, LIMPIAR_ALERTA, LOGIN_ERROR, LOGIN_EXITOSO } from "../../types/index";
 import clienteAxios from '../../config/axios';
 
 const AuthState = ({ children }) => {
@@ -54,7 +54,11 @@ const AuthState = ({ children }) => {
     const iniciarSesion = async (datos) => {
         try {
             const resp = await clienteAxios.post('/api/auth', datos);
-            console.log('ver resp', resp);
+            const { data: { token } } = resp;
+            dispatch({
+                type: LOGIN_EXITOSO,
+                payload: token
+            });
         } catch (error) {
             const { response: { data: { msg } } } = error;
             dispatch({
