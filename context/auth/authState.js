@@ -6,7 +6,8 @@ import { USUARIO_AUTENTICADO,
          REGISTRO_ERROR,
          LIMPIAR_ALERTA,
          LOGIN_ERROR, 
-         LOGIN_EXITOSO } from "../../types/index";
+         LOGIN_EXITOSO, 
+         CERRAR_SESION} from "../../types/index";
 import clienteAxios from '../../config/axios';
 import tokenAuth from '../../config/tokenAuth';
 
@@ -86,10 +87,15 @@ const AuthState = ({ children }) => {
                 payload: resp.data.usuario
             })
         } catch (error) {
-            
+            console.log(error);
         }
-
     }
+
+    const cerrarSesion = async () => {
+        dispatch({
+            type: CERRAR_SESION
+        });
+    } 
 
     return (
         <authContext.Provider
@@ -100,7 +106,8 @@ const AuthState = ({ children }) => {
                 mensaje: state.mensaje,
                 registrarUsuario,
                 usuarioAutenticado,
-                iniciarSesion
+                iniciarSesion,
+                cerrarSesion
             }}
         >
             {children}
