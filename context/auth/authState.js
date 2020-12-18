@@ -8,6 +8,7 @@ import { USUARIO_AUTENTICADO,
          LOGIN_ERROR, 
          LOGIN_EXITOSO } from "../../types/index";
 import clienteAxios from '../../config/axios';
+import tokenAuth from '../../config/tokenAuth';
 
 const AuthState = ({ children }) => {
 
@@ -73,7 +74,21 @@ const AuthState = ({ children }) => {
     }
 
     const usuarioAutenticado = async () => {
-        console.log('revisando');
+        const token = localStorage.getItem('token');
+        if(token) {
+            tokenAuth(token);
+        }
+
+        try {
+            const resp = await clienteAxios.get('/api/auth');
+            dispatch({
+                type: USUARIO_AUTENTICADO,
+                payload: resp.data.usuario
+            })
+        } catch (error) {
+            
+        }
+
     }
 
     return (
