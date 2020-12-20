@@ -1,17 +1,21 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import clienteAxios from '../config/axios';
 
 const DropZone = () => {
 
-    const onDrop = useCallback(async (acceptedFiles) => {
+    const onDropRejected = () => {
+        console.log('error al subir');
+    }
+
+    const onDropAccepted = useCallback(async (acceptedFiles) => {
         //Creando form data
         const formData = new FormData();
         formData.append('archivo', acceptedFiles[0])
         const resultado = await clienteAxios.post('/api/archivos', formData)
     }, []);
 
-    const { getRootProps, getInputProps, isDragActive, acceptedFiles } = useDropzone({ onDrop });
+    const { getRootProps, getInputProps, isDragActive, acceptedFiles } = useDropzone({ onDropAccepted, onDropRejected, maxSize: 1000000 });
 
     const archivos = acceptedFiles.map((archivo, idx) => (
         <li className="bg-white rouded flex-1 p-3 mb-4 shadow-lg" key={idx}>
