@@ -24,6 +24,12 @@ const AppState = ({children}) => {
             type: MOSTRAR_ALERTA,
             payload: mensaje
         })
+
+        setTimeout(() => {
+            dispatch({
+                type: LIMPIAR_ALERTA,
+            })
+        }, 3000);
     }
 
 
