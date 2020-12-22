@@ -11,7 +11,7 @@ const DropZone = () => {
 
 
     const onDropRejected = () => {
-        mostrarAlerta('error al subir');
+        mostrarAlerta('Error al subir, el tamaño máximo para cuentas gratis es de 1MB');
     }
 
     const onDropAccepted = useCallback(async (acceptedFiles) => {
