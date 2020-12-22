@@ -1,13 +1,12 @@
 import React, { useCallback, useContext } from 'react';
 import { useDropzone } from 'react-dropzone';
-import clienteAxios from '../config/axios';
 import appContext from '../context/app/appContext';
 
 const DropZone = () => {
 
     const AppContext = useContext(appContext);
 
-    const { mostrarAlerta } = AppContext;
+    const { mostrarAlerta, subirArchivos } = AppContext;
 
 
     const onDropRejected = () => {
@@ -18,7 +17,8 @@ const DropZone = () => {
         //Creando form data
         const formData = new FormData();
         formData.append('archivo', acceptedFiles[0])
-        const resultado = await clienteAxios.post('/api/archivos', formData)
+        subirArchivos(formData);
+
     }, []);
 
     const { getRootProps, getInputProps, isDragActive, acceptedFiles } = useDropzone({ onDropAccepted, onDropRejected, maxSize: 1000000 });
