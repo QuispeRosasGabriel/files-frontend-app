@@ -17,8 +17,7 @@ const DropZone = () => {
         //Creando form data
         const formData = new FormData();
         formData.append('archivo', acceptedFiles[0])
-        subirArchivos(formData);
-
+        subirArchivos(formData, acceptedFiles[0].path);
     }, []);
 
     const { getRootProps, getInputProps, isDragActive, acceptedFiles } = useDropzone({ onDropAccepted, onDropRejected, maxSize: 1000000 });

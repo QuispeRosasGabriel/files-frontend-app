@@ -1,4 +1,4 @@
-import { LIMPIAR_ALERTA, MOSTRAR_ALERTA } from "../../types";
+import { LIMPIAR_ALERTA, MOSTRAR_ALERTA, SUBIR_ARCHIVO_EXITO } from "../../types";
 
 export default (state, action) => {
     switch (action.type) {
@@ -12,7 +12,12 @@ export default (state, action) => {
                 ...state,
                 mensaje_archivo: null
             }
-
+        case SUBIR_ARCHIVO_EXITO:
+            return {
+                ...state,
+                nombre: action.payload.nombre,
+                nombre_original: action.payload.nombre_original
+            }
         default:
             break;
     }

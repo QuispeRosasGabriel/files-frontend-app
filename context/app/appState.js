@@ -35,12 +35,15 @@ const AppState = ({children}) => {
         }, 3000);
     }
 
-    const subirArchivos = async (formData) => {
+    const subirArchivos = async (formData, nombreArchivo) => {
         try {
              const resultado = await clienteAxios.post('/api/archivos', formData)
              dispatch({
                  type: SUBIR_ARCHIVO_EXITO,
-                 payload: resultado.data
+                 payload: {
+                     nombre: resultado.data.archivo,
+                     nombre_original: nombreArchivo
+                 }
              })
         } catch (error) {
             console.log('Error', error);
@@ -52,7 +55,9 @@ const AppState = ({children}) => {
         value={{
             mensaje_archivo: state.mensaje_archivo,
             mostrarAlerta,
-            subirArchivos
+            subirArchivos,
+            nombre: state.nombre,
+            nombre_original: state.nombre_original
         }}
         >
             {children}
