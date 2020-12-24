@@ -6,7 +6,7 @@ const DropZone = () => {
 
     const AppContext = useContext(appContext);
 
-    const { mostrarAlerta, subirArchivos } = AppContext;
+    const { mostrarAlerta, subirArchivos, cargando } = AppContext;
 
 
     const onDropRejected = () => {
@@ -50,10 +50,12 @@ const DropZone = () => {
                             <ul>
                                 {archivos}
                             </ul>
-                            <button className="bg-blue-700 w-full py-3 rounded-lg text-white my-10 hover:bg-blue-800"
-                                type="button"
-                                onClick={() => crearEnlace()}
-                            >Crear enlace</button>
+                            {!!cargando ? (<p>Subiendo archivo...</p>) : (
+                                <button className="bg-blue-700 w-full py-3 rounded-lg text-white my-10 hover:bg-blue-800"
+                                    type="button"
+                                    onClick={() => crearEnlace()}
+                                >Crear enlace</button>
+                            )}
                         </div>
                     )
                     : (

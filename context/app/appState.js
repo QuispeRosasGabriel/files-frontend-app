@@ -8,7 +8,8 @@ import {
     SUBIR_ARCHIVO_EXITO,
     CREAR_ENLACE_ERROR,
     CREAR_ENLACE_EXITO,
-    LIMPIAR_ALERTA
+    LIMPIAR_ALERTA,
+    SUBIR_ARCHIVO_CARGANDO
 } from '../../types';
 import clienteAxios from '../../config/axios';
 
@@ -17,7 +18,8 @@ const AppState = ({children}) => {
     const initialState = {
         mensaje_archivo: '',
         nombre: '',
-        nombre_original: ''
+        nombre_original: '',
+        cargando: null,
     }
 
     const [state, dispatch] = useReducer(appReducer, initialState)
@@ -37,6 +39,9 @@ const AppState = ({children}) => {
 
     const subirArchivos = async (formData, nombreArchivo) => {
         try {
+            dispatch({
+                type: SUBIR_ARCHIVO_CARGANDO,
+            })
              const resultado = await clienteAxios.post('/api/archivos', formData)
              dispatch({
                  type: SUBIR_ARCHIVO_EXITO,
@@ -46,7 +51,10 @@ const AppState = ({children}) => {
                  }
              })
         } catch (error) {
-            console.log('Error', error);
+            dispatch({
+                type: SUBIR_ARCHIVO_ERROR,
+                payload: error.response.data.msg
+            })
         }
     }
 
@@ -57,7 +65,8 @@ const AppState = ({children}) => {
             mostrarAlerta,
             subirArchivos,
             nombre: state.nombre,
-            nombre_original: state.nombre_original
+            nombre_original: state.nombre_original,
+            cargando: state.cargando
         }}
         >
             {children}
