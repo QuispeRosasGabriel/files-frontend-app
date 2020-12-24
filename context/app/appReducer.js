@@ -25,7 +25,7 @@ export default (state, action) => {
                 mensaje_archivo: action.payload,
                 cargando: null
             }
-        case: SUBIR_ARCHIVO_CARGANDO:
+        case SUBIR_ARCHIVO_CARGANDO:
             return {
                 ...state,
                 cargando: true,

@@ -20,6 +20,10 @@ const AppState = ({children}) => {
         nombre: '',
         nombre_original: '',
         cargando: null,
+        descargas: 1,
+        password: '',
+        autor: null,
+        url: ''
     }
 
     const [state, dispatch] = useReducer(appReducer, initialState)
@@ -58,15 +62,37 @@ const AppState = ({children}) => {
         }
     }
 
+    const crearEnlace = async () => {
+        const data = {
+            nombre: state.nombre,
+            nombre_original: state.nombre_original,
+            descargas: state.descargas,
+            password: state.password,
+            autor: state.autor,
+        }
+
+        try {
+            const resultado = await clienteAxios.post('/api/enlaces', data);
+            console.log('resultado', resultado);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
         <appContext.Provider
         value={{
             mensaje_archivo: state.mensaje_archivo,
             mostrarAlerta,
             subirArchivos,
+            crearEnlace,
             nombre: state.nombre,
             nombre_original: state.nombre_original,
-            cargando: state.cargando
+            cargando: state.cargando,
+            descargas: state.descargas,
+            password: state.password,
+            autor: state.autor,
+            url: state.url,
         }}
         >
             {children}
