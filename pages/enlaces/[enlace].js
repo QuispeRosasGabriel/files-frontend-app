@@ -1,7 +1,7 @@
 import Layout from '../../components/Layout';
 import clienteAxios from '../../config/axios';
 
-export async function getStaticProps() {
+export async function getStaticProps(props) {
     const resultado = await clienteAxios.get('/api/enlaces/');
     return {
         props: {
