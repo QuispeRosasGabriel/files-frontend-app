@@ -24,7 +24,7 @@ const Index = () => {
       <div className="md:w-4/5 xl:w-3/5 mx-auto mb-32">
         {
           url ? (
-            <p>Tu URL es: {url}</p>
+            <p>Tu URL es: {`${process.env.frontendUrl}/enlaces/${url}`}</p>
           ) : (
               <>
                 {!!mensaje_archivo && <Alerta />}
