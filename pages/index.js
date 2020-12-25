@@ -24,7 +24,16 @@ const Index = () => {
       <div className="md:w-4/5 xl:w-3/5 mx-auto mb-32">
         {
           url ? (
-            <p>Tu URL es: {`${process.env.frontendUrl}/enlaces/${url}`}</p>
+            <>
+              <p className="text-center">
+                <span className="font-bold text-red-700 text-2xl uppercase">Tu URL es: </span>{`${process.env.frontendUrl}/enlaces/${url}`}</p>
+              <button type="button"
+                className="bg-red-500 hover:bg-gray-900 w-full p-2 text-white uppercase font-bold mt-10"
+                onClick={() => navigator.clipboard.writeText(`${process.env.frontendUrl}/enlaces/${url}`)}
+              >
+                Copiar enlace
+                            </button>
+            </>
           ) : (
               <>
                 {!!mensaje_archivo && <Alerta />}
