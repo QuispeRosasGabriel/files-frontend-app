@@ -1,4 +1,4 @@
-import { LIMPIAR_ALERTA, MOSTRAR_ALERTA, SUBIR_ARCHIVO_CARGANDO, SUBIR_ARCHIVO_ERROR, SUBIR_ARCHIVO_EXITO } from "../../types";
+import { CREAR_ENLACE_EXITO, LIMPIAR_ALERTA, MOSTRAR_ALERTA, SUBIR_ARCHIVO_CARGANDO, SUBIR_ARCHIVO_ERROR, SUBIR_ARCHIVO_EXITO } from "../../types";
 
 export default (state, action) => {
     switch (action.type) {
@@ -29,6 +29,11 @@ export default (state, action) => {
             return {
                 ...state,
                 cargando: true,
+            }
+        case CREAR_ENLACE_EXITO:
+            return {
+                ...state,
+                url: action.payload
             }
         default:
             break;

@@ -73,7 +73,10 @@ const AppState = ({children}) => {
 
         try {
             const resultado = await clienteAxios.post('/api/enlaces', data);
-            console.log('resultado', resultado);
+            dispatch({
+                type: CREAR_ENLACE_EXITO,
+                payload: resultado.data.msg
+            })
         } catch (error) {
             console.log(error);
         }
